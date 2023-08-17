@@ -24,11 +24,18 @@
 
    程序运行成功后，默认订阅topic "/request_text"（std_msgs/msg/String类型），将结果以topic "/response_text"（std_msgs/msg/String类型）发布出去。
 
+   可使用如下命令发送消息验证程序是否运行成功：
+
+   ```bash
+   source /opt/tros/setup.bash
+   ros2 topic pub --once /request_text std_msgs/msg/String "{data: "你是谁"}"
+   ```
+
+   注意：普通用户ChatGPT API Key有调用频率限制，一般限制为每分钟三次。
+
 参数列表：
 
 | 参数名          | 解释            | 类型        | 是否必须 | 默认值      |
 | --------------- | -------------- | ----------- | --------| ----------- |
 | gpt_topic_sub   | 订阅的文本topic | std::string | 否      | "/request_text" |
 | gpt_topic_pub   | 发布的文本topic | std::string | 否      | "/response_text" |
-
-注意：普通用户ChatGPT API Key有调用频率限制，一般限制为每分钟三次。
