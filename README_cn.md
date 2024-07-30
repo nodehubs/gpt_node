@@ -8,8 +8,13 @@
 
 1. 拷贝配置文件到当前目录
 
+   tros foxy 版本
    ```bash
    cp -rf /opt/tros/lib/gpt_node/config ./
+   ```
+   tros humble 版本
+   ```bash
+   cp -rf /opt/tros/${TROS_DISTRO}/lib/gpt_node/config ./
    ```
 
 2. 修改 *config/gpt_config.json* ，将**api_key**字段设置为自己的ChatGPT API Key
@@ -18,9 +23,18 @@
 
 4. 运行Node
 
+   tros foxy 版本
    ```bash
+   # 配置 tros.b 环境：
    source /opt/tros/setup.bash
-
+   # run 方式启动
+   ros2 run gpt_node gpt_node
+   ```
+   tros humble 版本
+   ```bash
+   # 配置 tros.b humble 环境：
+   source /opt/tros/humble/setup.bash
+   # run 方式启动
    ros2 run gpt_node gpt_node
    ```
 
@@ -28,8 +42,16 @@
 
    可使用如下命令发送消息验证程序是否运行成功：
 
+   tros foxy 版本
    ```bash
+   # 配置 tros.b 环境：
    source /opt/tros/setup.bash
+   ros2 topic pub --once /request_text std_msgs/msg/String "{data: "你是谁"}"
+   ```
+   tros humble 版本
+   ```bash
+   # 配置 tros.b humble 环境：
+   source /opt/tros/humble/setup.bash
    ros2 topic pub --once /request_text std_msgs/msg/String "{data: "你是谁"}"
    ```
 

@@ -7,8 +7,14 @@ English| [简体中文](./README_cn.md)
 ## Running Instructions
 1. Copy the configuration file to the current directory
 
+   tros foxy:
    ```bash
    cp -rf /opt/tros/lib/gpt_node/config ./
+   ```
+
+   tros humble:
+   ```bash
+   cp -rf /opt/tros/${TROS_DISTRO}/lib/gpt_node/config ./
    ```
 
 2. Modify *config/gpt_config.json* to set the **api_key** field to your own ChatGPT API Key
@@ -17,9 +23,19 @@ English| [简体中文](./README_cn.md)
 
 4. Run the Node
 
+   tros foxy:
    ```bash
+   # Configure the tros.b environment:
    source /opt/tros/setup.bash
+   # run to start
+   ros2 run gpt_node gpt_node
+   ```
 
+   tros humble:
+   ```bash
+   # Configure the tros.b humble environment:
+   source /opt/tros/humble/setup.bash
+   # run to start
    ros2 run gpt_node gpt_node
    ```
 
@@ -27,8 +43,16 @@ English| [简体中文](./README_cn.md)
 
    You can use the following command to send a message to verify if the program is running successfully:
 
+   tros foxy:
    ```bash
+   # Configure the tros.b humble environment:
    source /opt/tros/setup.bash
+   ros2 topic pub --once /request_text std_msgs/msg/String "{data: "你是谁"}"
+   ```
+   tros humble:
+   ```bash
+   # Configure the tros.b humble environment:
+   source /opt/tros/humble/setup.bash
    ros2 topic pub --once /request_text std_msgs/msg/String "{data: "你是谁"}"
    ```
 
